@@ -6,9 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  path: /home/rifa/repository/ranomaly/
   url: https://forge.inrae.fr/umrf/ranomaly/-/archive/v{{ version }}/ranomaly-v{{ version }}.tar.gz
-  sha256: cd60ba91e10bcc5338d3f9f1659ef73ac85cf34109d5c5acdb3f502edd3f444a #sha256sum file.tar.gz
+  sha256: cd60ba91e10bcc5338d3f9f1659ef73ac85cf34109d5c5acdb3f502edd3f444a
 
 build:
   noarch: generic
