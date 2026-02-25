@@ -1,0 +1,112 @@
+{% set name = "r-ranomaly" %}
+{% set version = "1.2.5" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  path: /home/rifa/repository/ranomaly/
+  url: https://forge.inrae.fr/umrf/ranomaly/-/archive/v{{ version }}/ranomaly-v{{ version }}.tar.gz
+  sha256: cd60ba91e10bcc5338d3f9f1659ef73ac85cf34109d5c5acdb3f502edd3f444a #sha256sum file.tar.gz
+
+build:
+  noarch: generic
+  number: 0
+  run_exports:
+    - {{ pin_subpackage(name, max_pin = "x") }}
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - git
+    - make
+    - cmake
+    - pkg-config
+  host:
+    - tbb =2020.3
+    - tbb-devel =2020.3
+    - gmp
+    - libcurl
+    - mpfr
+    - zlib
+    - openssl
+    - xz
+    - freetype
+    - libtiff
+    - icu
+    - compilers
+    - libxml2
+    - r-base =4.4.*
+    - bioconductor-dada2 =1.34.0
+    - bioconductor-phyloseq =1.50.0
+    - bioconductor-complexheatmap =2.22.0
+    - bioconductor-decipher =3.2.0
+    - bioconductor-decontam =1.26.0
+    - bioconductor-deseq2 =1.46.0
+    - bioconductor-genomicalignments =1.42.0
+    - bioconductor-mixomics =6.30.0
+    - bioconductor-rhtslib =3.2.0
+    - bioconductor-rsamtools =2.22.0
+    - bioconductor-summarizedexperiment =1.36.0
+    - bioconductor-biobase =2.66
+    - r-doparallel
+    - r-foreach
+    - r-futile.logger
+    - r-ggplot2
+    - r-htmlwidgets
+    - r-metacoder
+    - r-nlme
+    - r-phangorn
+    - r-plotly >=4.10.4
+    - r-stringr
+    - r-taxize
+    - r-venn
+    - r-venndiagram
+    - r-vroom
+    - r-cluster
+    - r-scales
+  run:
+    - tbb =2020.3
+    - r-base =4.4.*
+    - bioconductor-dada2 =1.34.0
+    - bioconductor-phyloseq =1.50.0
+    - bioconductor-complexheatmap =2.22.0
+    - bioconductor-decipher =3.2.0
+    - bioconductor-decontam =1.26.0
+    - bioconductor-deseq2 =1.46.0
+    - bioconductor-genomicalignments =1.42.0
+    - bioconductor-mixomics =6.30.0
+    - bioconductor-rhtslib =3.2.0
+    - bioconductor-rsamtools =2.22.0
+    - bioconductor-summarizedexperiment =1.36.0
+    - bioconductor-biobase =2.66
+    - r-cluster
+    - r-doparallel
+    - r-foreach
+    - r-futile.logger
+    - r-ggplot2
+    - r-htmlwidgets
+    - r-metacoder
+    - r-nlme
+    - r-phangorn
+    - r-plotly >=4.10.4
+    - r-stringr
+    - r-taxize
+    - r-venn
+    - r-venndiagram
+    - r-vroom
+
+test:
+  commands:
+    - $R -e "library(ranomaly)"
+
+about:
+  home: https://forge.inrae.fr/umrf/ranomaly
+  license: "GPL-3.0-or-later"
+  summary: "rANOMALY is an R Package integrating AmplicoN wOrkflow for Microbial community AnaLYsis."
+
+extra:
+  skip-lints:
+    - should_be_noarch_generic
